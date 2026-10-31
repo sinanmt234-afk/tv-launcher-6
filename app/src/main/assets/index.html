@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Aether Home</title>
+<style>
+@font-face{font-family:Pacifico;src:url(fonts/Pacifico-Regular.ttf)}
+@font-face{font-family:Chilanka;src:url(fonts/Chilanka.ttf)}
+@font-face{font-family:P;font-weight:300;src:url(fonts/Poppins-Light.ttf)}
+@font-face{font-family:P;font-weight:500;src:url(fonts/Poppins-Medium.ttf)}
+@font-face{font-family:P;font-weight:700;src:url(fonts/Poppins-Bold.ttf)}
+:root{--blur:16;--a:1;--hl:.8;--sh:1}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;height:100%;overflow:hidden;background:#000;color:#fff;font-family:P,"Helvetica Neue",Roboto,Arial,sans-serif;font-weight:500}
+#bg{position:fixed;inset:0;background:url(wallpaper.jpg) center/cover no-repeat #111}
+#shade{position:fixed;inset:0;background:radial-gradient(60% 55% at 85% 12%,rgba(5,10,25,.5),rgba(5,10,25,0) 70%),linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.05) 35%,rgba(0,0,0,.55))}
+.g{background:rgba(255,255,255,.14);background:linear-gradient(145deg,rgba(255,255,255,calc(.26*var(--a))),rgba(255,255,255,calc(.07*var(--a))) 45%,rgba(255,255,255,calc(.14*var(--a))));border:1px solid rgba(255,255,255,.3);border:1px solid rgba(255,255,255,calc(.34*var(--hl)));box-shadow:inset 0 1px 0 rgba(255,255,255,calc(.75*var(--hl))),0 calc(1.2vw*var(--sh)) calc(3vw*var(--sh)) rgba(0,0,0,.35);position:relative}
+.gb{-webkit-backdrop-filter:blur(16px) saturate(170%);backdrop-filter:blur(16px) saturate(170%);-webkit-backdrop-filter:blur(calc(var(--blur)*1px)) saturate(170%);backdrop-filter:blur(calc(var(--blur)*1px)) saturate(170%)}
+.pg{position:fixed;inset:0;display:none}.pg.on{display:block}
+#tm{position:absolute;left:4.5vw;top:5vh;font-size:8vw;font-weight:300;letter-spacing:-.03em;line-height:1;text-shadow:0 .3vw 1.6vw rgba(0,0,0,.6)}
+#gd{position:absolute;left:4.7vw;top:21vh;text-shadow:0 .2vw 1.2vw rgba(0,0,0,.75)}
+.gt{font-family:Pacifico,P,cursive;font-weight:400;font-size:3.6vw;line-height:1.25}.gm{font-family:Chilanka,Manjari,'Noto Sans Malayalam',sans-serif;font-weight:400;font-size:3.3vw;line-height:1.3;color:#ffd9a0}.gdt{font-size:1.5vw;opacity:.9;margin-top:.5vw}
+#cz{position:absolute;right:4vw;top:5vh;height:3.8vw;padding:0 1.8vw;border-radius:1.9vw;display:flex;align-items:center;font-size:1.25vw;transition:transform .15s}
+.f.pill{background:#fff!important;color:#111;transform:scale(1.07)}
+#dock{position:absolute;left:5vw;right:5vw;bottom:6vh;height:17vw;border-radius:2.8vw;display:grid;grid-template-columns:repeat(5,1fr);gap:1.6vw;padding:2vw}
+.t{border-radius:1.6vw;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5vw;transition:transform .16s ease-out,box-shadow .16s,background .16s;will-change:transform;background:linear-gradient(145deg,rgba(255,255,255,.3),rgba(255,255,255,.08) 50%,rgba(255,255,255,.16));border:1px solid rgba(255,255,255,.3);box-shadow:inset 0 1px 0 rgba(255,255,255,.7);position:relative;overflow:hidden}
+.t img{object-fit:contain;border-radius:20%;filter:drop-shadow(0 .3vw .6vw rgba(0,0,0,.35))}
+.t .ph{font-weight:700;opacity:.9}.t .l{max-width:92%;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;text-shadow:0 .1vw .5vw rgba(0,0,0,.6)}
+.t.f{transform:scale(1.08);background:linear-gradient(145deg,rgba(255,255,255,.65),rgba(255,255,255,.28) 55%,rgba(255,255,255,.42));border-color:#fff;box-shadow:inset 0 1px 0 #fff,0 1.1vw 2.6vw rgba(0,0,0,.5),0 0 2.2vw rgba(255,255,255,.35)}
+#dock .t img{width:6vw;height:6vw}#dock .ph{font-size:4vw}#dock .l{font-size:1.25vw}
+.ai{width:6vw;height:6vw;display:grid;grid-template-columns:1fr 1fr;gap:.5vw}.ai i{background:#fff;border-radius:.7vw;opacity:.95}
+.sq{position:absolute;left:6vw;right:6vw;top:7vh;bottom:6vh;border-radius:2.8vw;padding:2vw 2.4vw;overflow:hidden}
+.ttl{font-size:2.2vw;font-weight:700;margin-bottom:.4vw}.sub{font-size:1.1vw;opacity:.75;margin-bottom:1.2vw}
+.vw{position:absolute;left:2.4vw;right:2.4vw;top:6.8vw;bottom:1.6vw;overflow:hidden}
+.gr{display:grid;grid-template-columns:repeat(5,1fr);gap:1.2vw;transition:transform .25s ease-out;padding:.8vw .6vw}
+.bd{position:absolute;top:.5vw;right:.6vw;width:2vw;height:2vw;border-radius:50%;background:#34c759;color:#fff;font-size:1.2vw;display:flex;align-items:center;justify-content:center;font-weight:700}
+.r{height:5.6vw;border-radius:1.8vw;display:flex;align-items:center;justify-content:space-between;padding:0 2.2vw;font-size:1.7vw;margin-bottom:1.1vw;transition:transform .15s}
+.r.f{background:linear-gradient(145deg,rgba(255,255,255,.7),rgba(255,255,255,.4));color:#111;transform:scale(1.02);border-color:#fff}
+.r span{opacity:.85;font-size:1.4vw}
+#ck{position:absolute;left:5vw;right:5vw;top:18vh;bottom:18vh;border-radius:2.4vw;background:linear-gradient(135deg,rgba(255,255,255,.1),rgba(255,255,255,0) 40%),#05090d;border:.35vw solid #1b2127;box-shadow:0 2vw 5vw rgba(0,0,0,.6),inset 0 0 3vw rgba(255,255,255,.04);display:flex;align-items:center;justify-content:space-between;padding:0 3.2vw;color:var(--c,#fff)}
+#cd{display:flex;flex-direction:column;gap:.55vw;font-size:1.7vw;font-weight:500;color:#fff;min-width:7vw}#cd span{opacity:.88}#cd span.on{color:#ffd23f;opacity:1;font-weight:700}
+#cm{display:flex;align-items:center;gap:1.2vw}#cap{font-size:1.5vw;align-self:flex-start;margin-top:3vw;color:#fff}
+.dg{width:8.6vw;height:15.5vw}.dg.s{width:3.4vw;height:6.1vw}.dg polygon{fill:var(--c,#fff);opacity:.07}.dg polygon.on{opacity:1}
+#cr2{display:flex;flex-direction:column;align-items:flex-end;gap:2.4vw;min-width:14vw}.rw{display:flex;align-items:center;gap:.3vw}.dt{width:.7vw;height:.7vw;border-radius:50%;background:var(--c,#fff);margin:0 .2vw;align-self:flex-end;margin-bottom:.5vw}
+.lb{font-size:1.1vw;color:#fff;opacity:.7;margin-left:.6vw}
+#toast{position:fixed;left:50%;bottom:3vh;transform:translateX(-50%);padding:1vw 2vw;border-radius:1.5vw;font-size:1.3vw;display:none;z-index:9;background:rgba(20,20,30,.9)}
+#hint{position:fixed;bottom:1.6vh;left:0;right:0;text-align:center;font-size:.95vw;opacity:.5}
+</style></head><body>
+<div id="bg"></div><div id="shade"></div>
+<div id="home" class="pg on">
+  <div id="tm"></div><div id="gd"></div>
+  <div id="cz" class="g gb pill">&#9881;&nbsp; Customize</div>
+  <div id="dock" class="g gb"></div>
+</div>
+<div id="apps" class="pg"><div class="sq g gb"><div class="ttl" id="at"></div><div class="sub" id="as"></div><div class="vw"><div class="gr" id="ag"></div></div></div></div>
+<div id="cust" class="pg"><div class="sq g gb"><div class="ttl">Customize</div><div class="sub">Up / Down to move, OK to select, Back to return</div><div id="cr" style="margin-top:1vw"></div></div></div>
+<div id="wall" class="pg"><div class="sq g gb"><div class="ttl">Wallpaper</div><div class="sub">OK to apply. Back to return</div><div class="gr" id="wg" style="margin-top:1vw"></div></div></div>
+<div id="clock" class="pg"><div id="ck"></div></div>
+<div id="toast" class="g gb"></div>
+<div id="hint"></div>
+<script>
+var A=typeof Android!=='undefined',apps=[],raw='',cache={},page='home',mode='',I={home:1,apps:0,cust:0,wall:0},E=[],sel=[],vy=0,lastDock=1;
+function $(i){return document.getElementById(i)}
+function S(k,d){try{var v=localStorage.getItem(k);return v===null?d:JSON.parse(v)}catch(e){return d}}
+function W(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+var h24=S('h24',false),cc=S('cc',0),CC=['#ffffff','#ffd23f','#3dff8f','#34d8ff','#ff5a4f'],fav=S('fav',null),wp=S('wp','def'),gl=S('gl',2);
+var GL=[[0,.5,.2,.2],[8,.8,.5,.5],[16,1,.8,1],[26,1.25,1,1.3],[40,1.5,1.2,1.6]],GN=['Flat','Low','Medium','High','Max'];
+function applyGlass(){var g=GL[gl],r=document.documentElement.style;r.setProperty('--blur',g[0]);r.setProperty('--a',g[1]);r.setProperty('--hl',g[2]);r.setProperty('--sh',g[3])}
+var WP=[['def','Default'],['g1','Aurora'],['g2','Sunset'],['g3','Midnight'],['g4','Ocean'],['g5','Forest'],['g6','Rose'],['custom','From device']];
+var GR={g1:'linear-gradient(135deg,#0f2027,#2c5364 50%,#2bc0e4)',g2:'linear-gradient(135deg,#2b1055,#c33764 55%,#ff9a44)',g3:'linear-gradient(160deg,#050816,#1b1f4b 60%,#3a2a6b)',g4:'linear-gradient(135deg,#02111f,#0b4f6c 55%,#20bf9f)',g5:'linear-gradient(135deg,#0b1f14,#1e5631 55%,#9bc53d)',g6:'linear-gradient(135deg,#1f0a1d,#7b2d5a 55%,#f2a1b3)'};
+function bgOf(id){return id==='def'?'url(wallpaper.jpg) center/cover no-repeat #111':GR[id]||'#111'}
+function applyWp(){
+  var b=$('bg');
+  if(wp==='custom'){var d=A?Android.getWallpaperData():'';if(d){b.style.background='url('+d+') center/cover no-repeat #111';return}wp='def';W('wp',wp)}
+  b.style.background=bgOf(wp);
+}
+function toast(m){var t=$('toast');t.textContent=m;t.style.display='block';clearTimeout(toast.h);toast.h=setTimeout(function(){t.style.display='none'},3200)}
+function clock(){
+  var d=new Date(),h=d.getHours();
+  $('tm').textContent=d.toLocaleTimeString([],{hour:'numeric',minute:'2-digit'});
+  var t=h*60+d.getMinutes(),nt=t>=1350||t<300,g=nt?'Good Night':t<720?'Good Morning':t<1020?'Good Afternoon':'Good Evening';
+  $('gd').innerHTML='<div class="gt">'+g+'</div>'+(nt?'<div class="gm">\u0D07\u0D28\u0D3F \u0D28\u0D3E\u0D33\u0D46 \u0D15\u0D3E\u0D23\u0D3E\u0D02</div>':'')+'<div class="gdt">'+d.toLocaleDateString([],{weekday:'long',day:'numeric',month:'long'})+'</div>';
+}
+clock();setInterval(clock,20000);
+function ic(a,sz){return cache[a.p]?'<img src="'+cache[a.p]+'" style="width:'+sz+'vw;height:'+sz+'vw">':'<div class="ph" style="font-size:'+sz*.65+'vw">'+a.n.charAt(0)+'</div>'}
+function favApps(){
+  var out=[],i;
+  (fav||[]).forEach(function(p){for(i=0;i<apps.length;i++)if(apps[i].p===p){out.push(apps[i]);break}});
+  if(!fav){['youtube','netflix','prime','hotstar','chrome','play store','music','photos','files'].forEach(function(n){for(i=0;i<apps.length;i++){if(apps[i].n.toLowerCase().indexOf(n)>-1&&out.indexOf(apps[i])<0){out.push(apps[i]);break}}})}
+  for(i=0;i<apps.length&&out.length<4;i++)if(out.indexOf(apps[i])<0)out.push(apps[i]);
+  return out.slice(0,4);
+}
+function load(){
+  var r;try{r=A?Android.getApps():null}catch(e){r=null}
+  if(r===raw&&apps.length)return;
+  raw=r;
+  try{apps=r?JSON.parse(r):[{p:'1',n:'YouTube'},{p:'2',n:'Netflix'},{p:'3',n:'Prime Video'},{p:'4',n:'Music'},{p:'5',n:'Photos'},{p:'6',n:'Browser'},{p:'7',n:'Files'},{p:'8',n:'Games'},{p:'9',n:'Clock'},{p:'10',n:'Maps'},{p:'11',n:'Camera'}]}catch(e){apps=[]}
+  apps.push({p:'__settings',n:'Settings'});
+  show(page,true);
+  if(A)queue(0);
+}
+function queue(i){
+  if(i>=apps.length-1){if(!queue.d){queue.d=1;show(page,true)}return}
+  setTimeout(function(){var a=apps[i];if(!cache[a.p]){var s=Android.getIcon(a.p);if(s)cache[a.p]=s}queue(i+1)},0);
+}
+function mk(a,sz,ls,pick){
+  var t=document.createElement('div');t.className='t';
+  t.innerHTML=ic(a,sz)+'<div class="l" style="font-size:'+ls+'vw"></div>';
+  t.lastChild.textContent=a.n;
+  return t;
+}
+function build(){
+  E=[];
+  if(page==='home'){
+    E.push($('cz'));
+    var d=$('dock');d.innerHTML='';
+    favApps().forEach(function(a){var t=mk(a,6,1.25);t.onclick=function(){openApp(a)};d.appendChild(t);E.push(t)});
+    var t=document.createElement('div');t.className='t';t.innerHTML='<div class="ai"><i></i><i></i><i></i><i></i></div><div class="l" style="font-size:1.25vw">All Apps</div>';
+    t.onclick=function(){go('apps')};d.appendChild(t);E.push(t);
+  }else if(page==='apps'){
+    var g=$('ag');g.innerHTML='';var n=apps.length,rows=Math.ceil(n/5),vh=window.innerHeight*.93-window.innerWidth*.12-window.innerWidth*.08;
+    var rh=Math.max(8.2,Math.min(11,(vh/window.innerWidth*100-1.2*(rows-1)-2)/rows)),isz=rh*.5;
+    g.style.gridAutoRows=rh+'vw';
+    apps.forEach(function(a,i){
+      var t=mk(a,isz,Math.max(1,rh*.12));
+      if(mode==='pick'){var k=sel.indexOf(a.p);if(k>-1){var b=document.createElement('div');b.className='bd';b.textContent=k+1;t.appendChild(b)}}
+      t.onclick=function(){I.apps=i;act()};g.appendChild(t);E.push(t);
+    });
+    $('at').textContent=mode==='pick'?'Choose 4 favorite apps ('+sel.length+'/4)':'All Apps';
+    $('as').textContent=mode==='pick'?'OK to select or unselect, Back to save':n+' apps';
+  }else if(page==='cust'){
+    var c=$('cr');c.innerHTML='';
+    var rowsT=[['Favorite apps',favApps().length+' on home screen'],['Wallpaper',(WP.filter(function(w){return w[0]===wp})[0]||['','Default'])[1]],['Clock',h24?'24 hour':'12 hour'],['Glass depth','\u25C0  '+GN[gl]+'  \u25B6'],['Android settings','']];
+    rowsT.forEach(function(x,i){var r=document.createElement('div');r.className='r g';r.innerHTML=x[0]+'<span>'+x[1]+'</span>';r.onclick=function(){I.cust=i;act()};c.appendChild(r);E.push(r)});
+  }else if(page==='clock'){clockDraw()}
+  else if(page==='wall'){
+    var w=$('wg');w.innerHTML='';
+    WP.forEach(function(x,i){var t=document.createElement('div');t.className='t';t.style.height='9vw';t.style.background=x[0]==='custom'?'rgba(255,255,255,.2)':bgOf(x[0]);t.style.backgroundSize='cover';t.innerHTML='<div class="l" style="font-size:1.2vw;font-weight:700">'+x[1]+(wp===x[0]?' \u2713':'')+'</div>';t.onclick=function(){I.wall=i;act()};w.appendChild(t);E.push(t)});
+  }
+  draw();
+}
+function draw(){
+  var i=I[page];
+  E.forEach(function(e,k){var f=k===i;if(e.id==='cz'||e.className.indexOf('r ')===0||e.className.indexOf('t')===0||e.className==='r g')e.className=e.className.replace(/ ?\bf\b/,'')+(f?' f':'')});
+  if(page==='apps'&&E[i]){
+    var g=$('ag'),vw=g.parentNode.clientHeight,t=E[i],top=t.offsetTop,bot=top+t.offsetHeight;
+    if(top-vy<0)vy=top-8;else if(bot-vy>vw)vy=bot-vw+8;
+    if(vy<0)vy=0;g.style.transform='translate3d(0,'+(-vy)+'px,0)';
+  }
+  $('hint').textContent=page==='home'?'OK to open  |  Up for Customize':'';
+}
+function show(p,keep){
+  page=p;['home','apps','cust','wall','clock'].forEach(function(x){$(x).className='pg'+(x===p?' on':'')});
+  if(!keep&&p==='apps')vy=0;
+  build();
+}
+function go(p,m){mode=m||'';if(p==='apps'&&mode==='pick')sel=favApps().map(function(a){return a.p});if(p==='apps'&&!mode)I.apps=0;show(p)}
+function openApp(a){if(!a||!A)return;if(a.p==='__settings')Android.openSettings();else Android.launch(a.p)}
+function act(){
+  var i=I[page];
+  if(page==='home'){if(i===0)go('cust');else if(i===E.length-1)go('apps');else openApp(favApps()[i-1])}
+  else if(page==='apps'){
+    var a=apps[i];
+    if(mode==='pick'){if(a.p==='__settings')return;var k=sel.indexOf(a.p);if(k>-1)sel.splice(k,1);else if(sel.length<4)sel.push(a.p);else toast('Only 4 apps. Unselect one first.');build()}
+    else openApp(a);
+  }else if(page==='cust'){
+    if(i===0)go('apps','pick');else if(i===1)go('wall');else if(i===2)go('clock');else if(i===3){gl=(gl+1)%5;W('gl',gl);applyGlass();build()}else openAndroid();
+  }else if(page==='clock'){cc=(cc+1)%CC.length;W('cc',cc);clockDraw()}
+  else if(page==='wall'){
+    var id=WP[i][0];
+    if(id==='custom'){if(A)Android.pickWallpaper();else toast('Works on the TV only')}
+    else{wp=id;W('wp',wp);applyWp();build()}
+  }
+}
+function openAndroid(){if(A)Android.openSettings()}
+window.onWp=function(ok){if(ok){wp='custom';W('wp',wp);applyWp();build()}else toast('No file picker on this device. Use the built-in wallpapers.')};
+window.onBack=function(){
+  if(page==='apps'&&mode==='pick'){if(sel.length){fav=sel.slice();W('fav',fav)}mode='';show('cust')}
+  else if(page==='wall'||page==='clock')show('cust');
+  else if(page==='cust'||page==='apps'){mode='';show('home')}
+};
+window.goHome=function(){mode='';I.home=1;show('home')};
+window.refreshApps=function(){load()};
+document.addEventListener('keydown',function(e){
+  var k=e.keyCode,i=I[page],n=E.length,u=1;
+  if(k===13||k===23||k===66||k===32){act();e.preventDefault();return}
+  if(k===27||k===8||k===4){onBack();e.preventDefault();return}
+  var L=k===37||k===21,R=k===39||k===22,U=k===38||k===19,D=k===40||k===20;
+  if(page==='clock'){if(L||R){h24=!h24;W('h24',h24);clockDraw()}e.preventDefault();return}
+  if(page==='home'){
+    if(i===0){if(D)i=lastDock}
+    else{if(R&&i<n-1)i++;else if(L&&i>1)i--;else if(U){lastDock=i;i=0}}
+  }else if(page==='cust'){
+    if(U&&i>0)i--;else if(D&&i<n-1)i++;
+    else if((L||R)&&i===3){gl=Math.max(0,Math.min(4,gl+(R?1:-1)));W('gl',gl);applyGlass();I.cust=i;build();e.preventDefault();return}
+  }else{
+    if(R&&i<n-1)i++;else if(L&&i>0)i--;
+    else if(D){if(i+5<n)i+=5;else if(Math.floor(i/5)<Math.floor((n-1)/5))i=n-1}
+    else if(U&&i>=5)i-=5;
+  }
+  if(!(L||R||U||D))u=0;
+  if(u){I[page]=i;draw();e.preventDefault()}
+});
+var SG=['9,3 41,3 36,9 14,9','44,6 44,42 40,45 36,42 36,12','44,84 44,48 40,45 36,48 36,78','9,87 41,87 36,81 14,81','6,84 6,48 10,45 14,48 14,78','6,6 6,42 10,45 14,42 14,12','10,45 14,41 36,41 40,45 36,49 14,49'];
+var DM=['abcdef','bc','abdeg','abcdg','bcfg','acdfg','acdefg','abc','abcdefg','abcdfg'];
+function dg(d,small){var m=DM[d],h='<svg class="dg'+(small?' s':'')+'" viewBox="0 0 50 90">';for(var j=0;j<7;j++)h+='<polygon points="'+SG[j]+'"'+(m.indexOf('abcdefg'.charAt(j))>-1?' class="on"':'')+'/>';return h+'</svg>'}
+function p2(n){return n<10?'0'+n:''+n}
+function clockDraw(){
+  if(page!=='clock')return;
+  var d=new Date(),h=d.getHours(),m=d.getMinutes(),ap=h>=12?'PM':'AM';
+  if(!h24){h=h%12;if(h===0)h=12}
+  var ht=h24?p2(h):(h<10?' ':'')+h,dy=d.getDay(),nm=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],o=[1,2,3,4,5,6,0],days='';
+  o.forEach(function(x){days+='<span'+(x===dy?' class="on"':'')+'>'+nm[x]+'</span>'});
+  var big=(ht.charAt(0)===' '?'<div style="width:8.6vw"></div>':dg(+ht.charAt(0)))+dg(+ht.charAt(1))+'<div style="display:flex;flex-direction:column;gap:3.2vw;padding:0 .4vw"><div class="dt" style="width:1.1vw;height:1.1vw;margin:0"></div><div class="dt" style="width:1.1vw;height:1.1vw;margin:0"></div></div>'+dg(Math.floor(m/10))+dg(m%10);
+  var mo=p2(d.getMonth()+1),da=p2(d.getDate()),sc=p2(d.getSeconds());
+  $('ck').style.setProperty('--c',CC[cc]);
+  $('ck').innerHTML='<div style="display:flex;align-items:center;gap:1.4vw"><div id="cd">'+days+'</div><div id="cap">'+(h24?'':ap)+'</div></div><div id="cm">'+big+'</div><div id="cr2"><div class="rw">'+dg(+sc.charAt(0),1)+dg(+sc.charAt(1),1)+'<span class="lb">SEC</span></div><div class="rw">'+dg(+mo.charAt(0),1)+dg(+mo.charAt(1),1)+'<div class="dt"></div>'+dg(+da.charAt(0),1)+dg(+da.charAt(1),1)+'</div></div>';
+  $('hint').textContent='OK: change colour  |  Left / Right: 12 or 24 hour  |  Back: return';
+}
+setInterval(clockDraw,1000);
+applyGlass();applyWp();load();
+</script></body></html>
